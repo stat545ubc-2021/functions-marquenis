@@ -68,8 +68,8 @@ Below is the function.
 #'    observation, and each cell must contain a single value.
 #' @param x a column which contains different categorical treatments, and can be 
 #'    characters or factors. These are the treatments groups the measured 
-#'    variable will be divided into for analyses. The presence of NA values is 
-#'    permitted, however they will be removed for analyses. 
+#'    variable will be divided into for analyses. The presence of NA values is
+#'    not permitted.
 #' @param y a column which contains the measured numeric variable. This is 
 #'    dependent variable the summary statistics will be calculated from. The 
 #'    presence of NA values is permitted, however they will be removed for analyses. 
@@ -93,10 +93,10 @@ box_and_stats <- function(data, x, y) {
                                    class_y = class({{y}}))
   if(!y_data_check$is_numeric_y) {
     stop("Selected y-column is not numeric, column is:", y_data_check$class_y)}
-  
+   
   data_to_analyze <- data %>%
     dplyr::mutate(fun_treatment = as.factor({{x}})) %>%
-    dplyr::mutate(fun_bodysize = as.numeric({{y}})) %>%
+    dplyr::mutate(fun_bodysize = {{y}}) %>%
     dplyr::filter(fun_treatment != "NA") %>%
     dplyr::filter(fun_bodysize != "NA")
   
@@ -154,10 +154,12 @@ box_and_stats(iris, Species, Sepal.Width)
     ## 3 virginica       2.2   3.8  2.97    3   0.322
 
 Here I used the built-in ‘mtcars’ data set to show that the inputs for
-the function are strict. This data set is tidy data, however the input
-for “x” was neither a character nor a factor. Even though “cylinders” in
-cars can be considered categorical, in this data set R has it as a
-character class.
+the function are strict. While this data set does not contain body size
+measured from different treatments, the function is flexible and can
+work for any data as long as the parameters are followed. This data set
+can work because it is tidy data, however the input for “x” was neither
+a character nor a factor. Even though “cylinders” in cars can be
+considered categorical, in this data set R has it as a character class.
 
 ``` r
 box_and_stats(mtcars, cyl, wt)
@@ -191,3 +193,39 @@ box_and_stats(mtcars_new, cyl, wt)
     ## 1 4              1.51  3.19  2.29   2.2  0.570
     ## 2 6              2.62  3.46  3.12   3.22 0.356
     ## 3 8              3.17  5.42  4.00   3.76 0.759
+
+Below I am testing my function.
+
+``` r
+test_that("Error message with incorrect x input type", {
+  expect_error(box_and_stats(mtcars, cyl, wt))
+})
+```
+
+    ## Test passed 😸
+
+``` r
+test_that("Error message with incorrect y input type", {
+  expect_error(box_and_stats(iris, species, "hello"))
+})
+```
+
+    ## Test passed 🥳
+
+``` r
+test_that("Returns the correct outputs", {
+  subject <- box_and_stats(iris, Species, Sepal.Width)
+  expect_s3_class(subject[[1]], "ggplot")
+  expect_s3_class(subject[[2]], "data.frame")
+})
+```
+
+    ## Test passed 🥇
+
+``` r
+test_that("Returns correct output types", {
+  expect_type(box_and_stats(iris, Species, Sepal.Width), "list")
+})
+```
+
+    ## Test passed 🎊
