@@ -57,12 +57,28 @@ Below is the function.
 ``` r
 #' Quick boxplot and summary statistics 
 #'
-#' 'box_and_stats()' returns a boxplot and summary statistics (max, min, mean, median, standard deviation) for a dataset which contains categorical treatment groups and a measured numeric variable. This function was made to assess the body size of insects (or any measured numeric variable) from different experimental growth treatments. 
+#' 'box_and_stats()' returns a boxplot and summary statistics (max, min, mean, 
+#'    median, standard deviation) for a dataset which contains categorical 
+#'    treatment groups and a measured numeric variable. This function was made 
+#'    to assess the body size of insects (or any measured numeric variable) from 
+#'    different experimental growth treatments. 
 #'
-#' @param data a tidy data set. The data must be 'tidy' for this function to work, so each column must be a variable, each row must be a unique observation, and each cell must contain a single value.
-#' @param x a column which contains different categorical treatments, and can be characters or factors. These are the treatments groups the measured variable will be divided into for analyses. The presence of NA values is permitted, however they will be removed for analyses. 
-#' @param y a column which contains the measured numeric variable. This is dependent variable the summary statistics will be calculated from. The presence of NA values is permitted, however they will be removed for analyses. 
-#' @return This function will return two items. The first item being a boxplot displaying the data from the numeric measured variable grouped by the identified treatments. The second item is a tibble containing 6 columns: 1 column containing the different treatments, and 5 columns for the minimum, maximum, mean, median, and standard deviation for the measured variable from each treatment. 
+#' @param data a tidy data set. The data must be 'tidy' for this function to 
+#'    work, so each column must be a variable, each row must be a unique 
+#'    observation, and each cell must contain a single value.
+#' @param x a column which contains different categorical treatments, and can be 
+#'    characters or factors. These are the treatments groups the measured 
+#'    variable will be divided into for analyses. The presence of NA values is 
+#'    permitted, however they will be removed for analyses. 
+#' @param y a column which contains the measured numeric variable. This is 
+#'    dependent variable the summary statistics will be calculated from. The 
+#'    presence of NA values is permitted, however they will be removed for analyses. 
+#' @return This function will return two items. The first item being a boxplot 
+#'    displaying the data from the numeric measured variable grouped by the 
+#'    identified treatments. The second item is a tibble containing 6 columns: 
+#'    1 column containing the different treatments, and 5 columns for the 
+#'    minimum, maximum, mean, median, and standard deviation for the measured 
+#'    variable from each treatment. 
 
 box_and_stats <- function(data, x, y) {
   

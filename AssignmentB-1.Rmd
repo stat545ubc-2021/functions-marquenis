@@ -5,11 +5,18 @@ output:
     variant: markdown_github
 ---
 
-In the following assignment, I created and described a function inspired by my personal research. I am an ecological entomologist, interested in studying how mosquitoes will react to global warming and climate change. 
+In the following assignment, I created and described a function inspired by my 
+personal research. I am an ecological entomologist, interested in studying how 
+mosquitoes will react to global warming and climate change. 
 
-One trait we can study in mosquitoes is body size, so I made a function which can quickly create a boxplot and summary statistics of the body size of insects (or any measured numeric variable) from different experimental growth treatments. 
+One trait we can study in mosquitoes is body size, so I made a function which 
+can quickly create a boxplot and summary statistics of the body size of insects 
+(or any measured numeric variable) from different experimental growth treatments. 
 
-The function I made below is not meant to provide publishable figures and does not use any statistical analyses to determine significant relationships. It is meant to be used at the beginning of data analysis, to gain a general understanding of how the data looks.
+The function I made below is not meant to provide publishable figures and does 
+not use any statistical analyses to determine significant relationships. It is 
+meant to be used at the beginning of data analysis, to gain a general 
+understanding of how the data looks.
 
 First we will begin by loading packages
 ```{r setup, include=FALSE}
@@ -28,12 +35,28 @@ Below is the function.
 
 #' Quick boxplot and summary statistics 
 #'
-#' 'box_and_stats()' returns a boxplot and summary statistics (max, min, mean, median, standard deviation) for a dataset which contains categorical treatment groups and a measured numeric variable. This function was made to assess the body size of insects (or any measured numeric variable) from different experimental growth treatments. 
+#' 'box_and_stats()' returns a boxplot and summary statistics (max, min, mean, 
+#'    median, standard deviation) for a dataset which contains categorical 
+#'    treatment groups and a measured numeric variable. This function was made 
+#'    to assess the body size of insects (or any measured numeric variable) from 
+#'    different experimental growth treatments. 
 #'
-#' @param data a tidy data set. The data must be 'tidy' for this function to work, so each column must be a variable, each row must be a unique observation, and each cell must contain a single value.
-#' @param x a column which contains different categorical treatments, and can be characters or factors. These are the treatments groups the measured variable will be divided into for analyses. The presence of NA values is permitted, however they will be removed for analyses. 
-#' @param y a column which contains the measured numeric variable. This is dependent variable the summary statistics will be calculated from. The presence of NA values is permitted, however they will be removed for analyses. 
-#' @return This function will return two items. The first item being a boxplot displaying the data from the numeric measured variable grouped by the identified treatments. The second item is a tibble containing 6 columns: 1 column containing the different treatments, and 5 columns for the minimum, maximum, mean, median, and standard deviation for the measured variable from each treatment. 
+#' @param data a tidy data set. The data must be 'tidy' for this function to 
+#'    work, so each column must be a variable, each row must be a unique 
+#'    observation, and each cell must contain a single value.
+#' @param x a column which contains different categorical treatments, and can be 
+#'    characters or factors. These are the treatments groups the measured 
+#'    variable will be divided into for analyses. The presence of NA values is 
+#'    permitted, however they will be removed for analyses. 
+#' @param y a column which contains the measured numeric variable. This is 
+#'    dependent variable the summary statistics will be calculated from. The 
+#'    presence of NA values is permitted, however they will be removed for analyses. 
+#' @return This function will return two items. The first item being a boxplot 
+#'    displaying the data from the numeric measured variable grouped by the 
+#'    identified treatments. The second item is a tibble containing 6 columns: 
+#'    1 column containing the different treatments, and 5 columns for the 
+#'    minimum, maximum, mean, median, and standard deviation for the measured 
+#'    variable from each treatment. 
 
 box_and_stats <- function(data, x, y) {
   
@@ -80,21 +103,37 @@ box_and_stats <- function(data, x, y) {
 
 
 
-The following code chunk will demonstrate this function used on the built-in R data set 'iris'. The categorical treatment variable here will be Species, and the measured numeric variable will be Sepal.Width. As you can see, function ignores all other variables in the data set, focusing only on Species and Sepal.Width, returning a boxplot and brief summary statistics. 
+The following code chunk will demonstrate this function used on the built-in R 
+data set 'iris'. The categorical treatment variable here will be Species, and 
+the measured numeric variable will be Sepal.Width. As you can see, function 
+ignores all other variables in the data set, focusing only on Species and 
+Sepal.Width, returning a boxplot and brief summary statistics. 
 
-With this quick function, I am quickly able to see that the species 'setosa' is larger than the species 'versicolor'. This newly found information may prompt me to further investigate the differences between these two species, running  statistical tests to determine if there are any significance differences between species.
+With this quick function, I am quickly able to see that the species 'setosa' is 
+larger than the species 'versicolor'. This newly found information may prompt 
+me to further investigate the differences between these two species, running 
+statistical tests to determine if there are any significance differences between 
+species.
 
 ```{r, iris example}
 box_and_stats(iris, Species, Sepal.Width)
 ```
 
-Here I used the built-in 'mtcars' data set to show that the inputs for the function are strict. This data set is tidy data, however the input for "x" was neither a character nor a factor. Even though "cylinders" in cars can be considered categorical, in this data set R has it as a character class. 
+Here I used the built-in 'mtcars' data set to show that the inputs for the 
+function are strict. This data set is tidy data, however the input for "x" was 
+neither a character nor a factor. Even though "cylinders" in cars can be 
+considered categorical, in this data set R has it as a character class. 
 
 ```{r, mtcars example 1, error = TRUE}
 box_and_stats(mtcars, cyl, wt)
 ```
 
-If we would still like to use this function, we would have to convert the cyl column into a character or factor, and rerun the function. Below we see that the function now works. While some data sets may use numbers as categorical variables, this added step on the users behalf ensures that this function is used correctly by forcing the user to consciously convert numeric categorical data into characters or factors. 
+If we would still like to use this function, we would have to convert the cyl 
+column into a character or factor, and rerun the function. Below we see that the 
+function now works. While some data sets may use numbers as categorical 
+variables, this added step on the users behalf ensures that this function is 
+used correctly by forcing the user to consciously convert numeric categorical 
+data into characters or factors. 
 ```{r, mtcars example 2}
 
 mtcars_new <- mtcars %>%
