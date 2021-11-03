@@ -202,7 +202,7 @@ test_that("Error message with incorrect x input type", {
 })
 ```
 
-    ## Test passed 😸
+    ## Test passed 🎉
 
 ``` r
 test_that("Error message with incorrect y input type", {
@@ -210,7 +210,7 @@ test_that("Error message with incorrect y input type", {
 })
 ```
 
-    ## Test passed 🥳
+    ## Test passed 🥇
 
 ``` r
 test_that("Returns the correct outputs", {
@@ -220,12 +220,31 @@ test_that("Returns the correct outputs", {
 })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 😀
 
 ``` r
-test_that("Returns correct output types", {
+test_that("Returns correct output", {
   expect_type(box_and_stats(iris, Species, Sepal.Width), "list")
 })
 ```
 
-    ## Test passed 🎊
+    ## Test passed 😸
+
+``` r
+#Creating two dataframes, one without NAs and one with 1 added NA for each 
+#categorical variable.
+df1 <- tibble(
+  x = c("m", "a", "b","m", "a", "b", "m", "a", "b", "m", "a", "b", "m", "a", "b"),
+  y = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, NA, NA , NA)
+)
+df2 <- tibble(
+  x = c("m", "a", "b","m", "a", "b", "m", "a", "b", "m", "a", "b", "m", "a", "b"),
+  y = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, NA, NA , NA)
+)
+
+test_that("Works the same with and without NA values in columns",{
+  expect_equal(box_and_stats(df1, x, y), box_and_stats(df2,x,y))
+})
+```
+
+    ## Test passed 🌈
