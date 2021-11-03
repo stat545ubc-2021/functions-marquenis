@@ -8,7 +8,7 @@ repositories and share them whenever needed.
 I will be updating this README file as the term progresses. As of Nov 2nd, this repository contains:
 
 1. This README.md file.
-2. The folder for Assignment B1:
+2. The B1-folder for Assignment B1:
 
       a. AssignmentB-1.Rmd, the R markdown file I created for the assignment
      
