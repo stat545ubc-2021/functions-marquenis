@@ -9,11 +9,15 @@ I will be updating this README file as the term progresses. As of Nov 2nd, this 
 
 1. This README.md file.
 2. The folder for Assignment B1:
-     a. AssignmentB-1.Rmd, the R markdown file I created for the assignment
-     b. AssignmentB-1.md, the knit, readable file
-     c. AssignmentB-1 folder, a folder containing the outputs of the .Rmd file.
-4. The R-Project file
-5. The gitignore file
+
+      a. AssignmentB-1.Rmd, the R markdown file I created for the assignment
+     
+      b. AssignmentB-1.md, the knit, readable file
+     
+      c. AssignmentB-1 folder, a folder containing the outputs of the .Rmd file.
+     
+3. The R-Project file
+4. The gitignore file
 
 
 ### Assignment B1
