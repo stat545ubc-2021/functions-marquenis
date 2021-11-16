@@ -169,7 +169,7 @@ test_that("Returns correct output", {
 #categorical variable.
 df1 <- tibble(
   x = c("m", "a", "b","m", "a", "b", "m", "a", "b", "m", "a", "b", "m", "a", "b"),
-  y = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, NA, NA , NA)
+  y = c(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6)
 )
 df2 <- tibble(
   x = c("m", "a", "b","m", "a", "b", "m", "a", "b", "m", "a", "b", "m", "a", "b"),
