@@ -101,12 +101,12 @@ box_and_stats <- function(data, x, y) {
     dplyr::filter(fun_bodysize != "NA")
   
   quick_boxplot <- data_to_analyze %>%
-    ggplot(mapping= aes(x=fun_treatment, y=fun_bodysize))+ 
-    geom_boxplot(mapping =aes(x=fun_treatment,y=fun_bodysize),width=0.5)+
-    geom_jitter(mapping =aes(x=fun_treatment, y=fun_bodysize), width = 0.1, alpha = 0.6)+
-    theme_minimal()+
-    ylab("Body size measure") +
-    xlab("Treatment")
+    ggplot2::ggplot(mapping = ggplot2::aes(x=fun_treatment, y=fun_bodysize))+ 
+    ggplot2::geom_boxplot(mapping = ggplot2::aes(x=fun_treatment,y=fun_bodysize),width=0.5)+
+    ggplot2::geom_jitter(mapping = ggplot2::aes(x=fun_treatment, y=fun_bodysize), width = 0.1, alpha = 0.6)+
+    ggplot2::theme_minimal()+
+    ggplot2::ylab("Body size measure") +
+    ggplot2::xlab("Treatment")
     
   quick_stats <- data_to_analyze %>%
     dplyr::group_by(fun_treatment) %>%
@@ -210,7 +210,7 @@ test_that("Error message with incorrect y input type", {
 })
 ```
 
-    ## Test passed 🥇
+    ## Test passed 😀
 
 ``` r
 test_that("Returns the correct outputs", {
@@ -220,7 +220,7 @@ test_that("Returns the correct outputs", {
 })
 ```
 
-    ## Test passed 😀
+    ## Test passed 🌈
 
 ``` r
 test_that("Returns correct output", {
@@ -228,7 +228,7 @@ test_that("Returns correct output", {
 })
 ```
 
-    ## Test passed 😸
+    ## Test passed 🌈
 
 ``` r
 #Creating two dataframes, one without NAs and one with 1 added NA for each 
@@ -247,4 +247,4 @@ test_that("Works the same with and without NA values in columns",{
 })
 ```
 
-    ## Test passed 🌈
+    ## Test passed 😸
